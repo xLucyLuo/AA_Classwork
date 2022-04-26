@@ -6,14 +6,14 @@ class Hangman
   end
 
   def initialize
-    @secret_word = self.class.random_word
+    @secret_word = Hangman.random_word
     @guess_word = Array.new(@secret_word.length,"_")
     @attempted_chars = []
     @remaining_incorrect_guesses = 5
   end
 
   attr_reader :guess_word, :attempted_chars, :remaining_incorrect_guesses
-
+  
   def already_attempted? (chr)
     attempted_chars.include?(chr)
   end

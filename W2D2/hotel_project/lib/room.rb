@@ -20,14 +20,5 @@ class Room
             return true 
         end 
         false
-
-        if !full?
-            @occupants << person
-            return true 
-        end
-
-        false
     end
-
-
 end
