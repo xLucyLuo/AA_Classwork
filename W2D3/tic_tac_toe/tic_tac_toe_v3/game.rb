@@ -3,8 +3,7 @@ require_relative "human_player"
 require_relative "computer_player"
 
 class Game
-
-    def initialize (n, players)
+    def initialize(n, players)
         @players = players.map{|mark, is_ai| is_ai ? ComputerPlayer.new(mark) : HumanPlayer.new(mark)}
         @current_player = @players[0]
         @board = Board.new(n)
