@@ -38,6 +38,5 @@ class Battleship
         @remaining_misses -=1 if !board.attack(@player.get_move)
         board.print
         puts @remaining_misses
-
     end
 end
