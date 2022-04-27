@@ -6,9 +6,21 @@
 #
 # all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])   # => ["action europe", "tear impromptu"]
 def all_vowel_pairs(words)
-
+    pairs = []
+    (0...words.length-1).each do |i|
+        (i+1...words.length).each do |j|
+            pairs << words[i]+" "+words[j] if is_pair?(words[i], words[j])
+        end
+    end
+    pairs
 end
 
+def is_pair?(word1, word2)
+    vowels = {}
+    "aeiou".each_char{|chr|vowels[chr]=false}
+    (word1+word2).each_char{|chr| vowels[chr.downcase]=true if vowels.include?(chr.downcase)}
+    vowels.all?{|k,v| v}
+end
 
 # Write a method, composite?, that takes in a number and returns a boolean indicating if the number
 # has factors besides 1 and itself
@@ -18,7 +30,8 @@ end
 # composite?(9)     # => true
 # composite?(13)    # => false
 def composite?(num)
-
+    (2...num).each{|factors| return true if num % factors == 0}
+    false
 end
 
 
@@ -32,7 +45,7 @@ end
 # find_bigrams("the theater is empty", ["cy", "em", "ty", "ea", "oo"])  # => ["em", "ty", "ea"]
 # find_bigrams("to the moon and back", ["ck", "oo", "ha", "at"])        # => ["ck", "oo"]
 def find_bigrams(str, bigrams)
-
+    bigrams.select{|el| str.include?(el)}
 end
 
 class Hash
@@ -50,7 +63,8 @@ class Hash
     # hash_2.my_select { |k, v| k + 1 == v }      # => {10=>11, 5=>6, 7=>8})
     # hash_2.my_select                            # => {4=>4}
     def my_select(&prc)
-
+        prc||= Proc.new{|k,v| k == v}
+        self.select{|k,v| prc.call(k,v)}
     end
 end
 
@@ -64,7 +78,18 @@ class String
     # "cats".substrings     # => ["c", "ca", "cat", "cats", "a", "at", "ats", "t", "ts", "s"]
     # "cats".substrings(2)  # => ["ca", "at", "ts"]
     def substrings(length = nil)
+        substrs = []
 
+        if length
+            (0..self.length-length).each{|i| substrs << self[i...i+length]}
+        else
+            (0...self.length).each do |i|
+                (i...self.length).each do |j|
+                    substrs << self[i..j]
+                end
+            end
+        end
+        substrs
     end
 
 
@@ -78,6 +103,7 @@ class String
     # "bootcamp".caesar_cipher(2) #=> "dqqvecor"
     # "zebra".caesar_cipher(4)    #=> "difve"
     def caesar_cipher(num)
-
+        alphabet = ("a".."z").to_a
+        self.each_char.map{|chr| alphabet[(alphabet.index(chr.downcase) + num) % alphabet.length]}.join("")
     end
 end
