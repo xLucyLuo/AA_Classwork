@@ -18,9 +18,36 @@ end
 def is_pair?(word1, word2)
     vowels = {}
     "aeiou".each_char{|chr|vowels[chr]=false}
-    (word1+word2).each_char{|chr| vowels[chr.downcase]=true if vowels.include?(chr.downcase)}
+    (word1+word2).each_char do |chr| 
+        vowels[chr.downcase]=true if vowels.include?(chr.downcase)
+    end
     vowels.all?{|k,v| v}
 end
+
+# def all_vowel_pairs(words)
+#     results = []
+
+#     for i in 0...words.length do
+#         for j in i...words.length do 
+#             paired = words[i] + " " + words[j]
+#             if (has_all_vowels(paired))
+#                 results << paired
+#             end
+#         end
+#     end    
+
+#     results
+# end
+
+# def has_all_vowels(paired)
+#     vowels = ["a", "e", "i", "o", "u"]
+#     vowels.each do |v| 
+#         if paired.index(v) == nil
+#             return false
+#         end
+#     end
+#     true
+# end
 
 # Write a method, composite?, that takes in a number and returns a boolean indicating if the number
 # has factors besides 1 and itself
