@@ -41,25 +41,24 @@ class List
     end
 
     def print
-        puts "------------------------------------------"
+        puts "-------------------------------------------------"
         puts @label.upcase.center(42, ' ')   
-        puts "------------------------------------------"
-        puts "Index | Item                 | Deadline   "
-        puts "------------------------------------------"
+        puts "-------------------------------------------------"
+        puts "Index | Item                 | Deadline   | Done"
+        puts "-------------------------------------------------"
 
         @items.each_with_index do |item,i|
-            puts i.to_s.ljust(6)+ "| " + item.title.ljust(21) + "| " + item.deadline + " "
+            puts i.to_s.ljust(6)+ "| " + item.title.ljust(21) + "| " + item.deadline + " | ["+(item.done ? "x" : " " )+"]"
         end
-        puts "------------------------------------------"
+        puts "-------------------------------------------------"
     end
 
     def print_full_item(idx)
         return if !valid_index?(idx)
-
-        puts "------------------------------------------"
-        puts items[idx].title.ljust(21) +itesm[idx].deadline.rjust(21)
-        puts items[idx].description
-        puts "------------------------------------------"
+        puts "-------------------------------------------------"
+        puts @items[idx].title.ljust(21) + @items[idx].deadline.rjust(21)+ "     ["+(@items[idx].done ? "x" : " " )+"]"
+        puts @items[idx].description
+        puts "-------------------------------------------------"
     end
 
     def print_priority
@@ -87,9 +86,85 @@ class List
         end
         true
     end
+
+    def sort_by_date!
+        @items.sort_by!(&:deadline)
+    end
+
+    def toggle_item(idx)
+        @items[idx].toggle
+    end
+
+    def remove_item(idx)
+        return false unless valid_index?(idx)
+        @items.delete_at(idx)
+        true
+    end
+
+    def purge
+        i = 0
+
+        while i < @items.length
+            if @items[i].done
+                remove_item(i)
+                i-=1
+            end
+            i+=1
+        end
+    end
 end
 
 
+#------------------------------------------------------------
+# p l = List.new('Groceries')
+# # => #<List:0x @items=[], @label="Groceries">
+
+# p l.add_item('cheese', '2019-10-25')
+# # => true
+
+# p l.add_item('toothpaste', '2019-10-25')
+# # => true
+
+# p l.add_item('shampoo', '2019-10-24')
+# # => true
+
+# p l.add_item('candy', '2019-10-31')
+# # => true
+
+# p l.print
+# # ------------------------------------------
+# #                 GROCERIES
+# # ------------------------------------------
+# # Index | Item                 | Deadline
+# # ------------------------------------------
+# # 0     | cheese               | 2019-10-25
+# # 1     | toothpaste           | 2019-10-25
+# # 2     | shampoo              | 2019-10-24
+# # 3     | candy                | 2019-10-31
+# # ------------------------------------------
+# # => nil
+
+# p l.sort_by_date!
+# # => [#<Item:0x @deadline="2019-10-24", @description="", @title="shampoo">,
+# #  #<Item:0x @deadline="2019-10-25", @description="", @title="cheese">,
+# #  #<Item:0x @deadline="2019-10-25", @description="", @title="toothpaste">,
+# #  #<Item:0x @deadline="2019-10-31", @description="", @title="candy">]
+
+# p l.print
+# # ------------------------------------------
+# #                 GROCERIES
+# # ------------------------------------------
+# # Index | Item                 | Deadline
+# # ------------------------------------------
+# # 0     | shampoo              | 2019-10-24
+# # 1     | cheese               | 2019-10-25
+# # 2     | toothpaste           | 2019-10-25
+# # 3     | candy                | 2019-10-31
+# # ------------------------------------------
+# # => nil
+
+
+#---------------------------------------------------------------------------------
 # p l = List.new('Groceries')
 # # => #<List:0x00007fac66bedf38 @items=[], @label="Groceries">
 
