@@ -1,5 +1,5 @@
 require "singleton"
-require_relative "peices"
+require_relative "peices.rb"
 
 class NullPiece < Piece
     include Singleton

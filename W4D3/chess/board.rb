@@ -84,7 +84,6 @@ class Board
 
 
 
-    
   #initialize creates array
 
 end
