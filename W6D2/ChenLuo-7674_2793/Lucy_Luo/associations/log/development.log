@@ -1,0 +1,348 @@
+  [1m[35m (197.7ms)[0m  [1m[35mCREATE DATABASE "rails-1B-assoc_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (48.5ms)[0m  [1m[35mCREATE DATABASE "rails-1B-assoc_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "albums" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "albums" ("id" bigserial primary key, "name" character varying NOT NULL, "year" integer NOT NULL, "artist_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX  "index_albums_on_artist_id" ON "albums"  ("artist_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "artists" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "artists" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_artists_on_name" ON "artists"  ("name")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_tracks" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "playlist_tracks" ("id" bigserial primary key, "playlist_id" integer NOT NULL, "song_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_playlist_id" ON "playlist_tracks"  ("playlist_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_song_id" ON "playlist_tracks"  ("song_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" bigserial primary key, "name" character varying NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX  "index_playlists_on_user_id" ON "playlists"  ("user_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs" CASCADE[0m
+  ↳ db/schema.rb:51
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "name" character varying NOT NULL, "length" integer NOT NULL, "album_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:51
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_album_id" ON "songs"  ("album_id")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_name" ON "songs"  ("name")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200129002221)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200129002155),
+(20200129002127),
+(20200129002148),
+(20200129002134),
+(20200129002140);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-05-24 16:20:47.327058"], ["updated_at", "2022-05-24 16:20:47.327058"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "albums" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "albums" ("id" bigserial primary key, "name" character varying NOT NULL, "year" integer NOT NULL, "artist_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_albums_on_artist_id" ON "albums"  ("artist_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "artists" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "artists" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_artists_on_name" ON "artists"  ("name")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_tracks" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "playlist_tracks" ("id" bigserial primary key, "playlist_id" integer NOT NULL, "song_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_playlist_id" ON "playlist_tracks"  ("playlist_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_song_id" ON "playlist_tracks"  ("song_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" bigserial primary key, "name" character varying NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX  "index_playlists_on_user_id" ON "playlists"  ("user_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs" CASCADE[0m
+  ↳ db/schema.rb:51
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "name" character varying NOT NULL, "length" integer NOT NULL, "album_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:51
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_album_id" ON "songs"  ("album_id")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_name" ON "songs"  ("name")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200129002221)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200129002155),
+(20200129002127),
+(20200129002148),
+(20200129002134),
+(20200129002140);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-05-24 16:20:47.377386"], ["updated_at", "2022-05-24 16:20:47.377386"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2022-05-24 16:20:47.379173"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mArtist Destroy (0.2ms)[0m  [1m[31mDELETE FROM "artists"[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:15
+  [1m[36mAlbum Destroy (0.1ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  ↳ db/seeds.rb:16
+  [1m[36mPlaylist Destroy (0.1ms)[0m  [1m[31mDELETE FROM "playlists"[0m
+  ↳ db/seeds.rb:17
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs"[0m
+  ↳ db/seeds.rb:18
+  [1m[36mPlaylistTrack Destroy (0.2ms)[0m  [1m[31mDELETE FROM "playlist_tracks"[0m
+  ↳ db/seeds.rb:19
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id", "username", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 3748], ["username", "ricky"], ["password", "grade10"], ["created_at", "2022-05-24 16:20:47.401560"], ["updated_at", "2022-05-24 16:20:47.401560"]]
+  ↳ db/seeds.rb:21
+  [1m[36mArtist Create (0.2ms)[0m  [1m[32mINSERT INTO "artists" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 53748], ["name", "Aphex Twin"], ["created_at", "2022-05-24 16:20:47.405820"], ["updated_at", "2022-05-24 16:20:47.405820"]]
+  ↳ db/seeds.rb:27
+  [1m[36mAlbum Create (0.2ms)[0m  [1m[32mINSERT INTO "albums" ("id", "name", "year", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 42842], ["name", "Selected Ambient Works 85-92"], ["year", 1992], ["artist_id", 53748], ["created_at", "2022-05-24 16:20:47.410633"], ["updated_at", "2022-05-24 16:20:47.410633"]]
+  ↳ db/seeds.rb:32
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("id", "name", "length", "album_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 57725], ["name", "Ptolemy"], ["length", 434], ["album_id", 42842], ["created_at", "2022-05-24 16:20:47.415547"], ["updated_at", "2022-05-24 16:20:47.415547"]]
+  ↳ db/seeds.rb:39
+  [1m[36mSong Create (0.1ms)[0m  [1m[32mINSERT INTO "songs" ("id", "name", "length", "album_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 22340], ["name", "Hedphelym"], ["length", 363], ["album_id", 42842], ["created_at", "2022-05-24 16:20:47.416664"], ["updated_at", "2022-05-24 16:20:47.416664"]]
+  ↳ db/seeds.rb:46
+  [1m[36mPlaylist Create (0.2ms)[0m  [1m[32mINSERT INTO "playlists" ("id", "name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 50644], ["name", "Good Songs"], ["user_id", 3748], ["created_at", "2022-05-24 16:20:47.420912"], ["updated_at", "2022-05-24 16:20:47.420912"]]
+  ↳ db/seeds.rb:53
+  [1m[36mPlaylistTrack Create (0.2ms)[0m  [1m[32mINSERT INTO "playlist_tracks" ("id", "playlist_id", "song_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 61610], ["playlist_id", 50644], ["song_id", 57725], ["created_at", "2022-05-24 16:20:47.425069"], ["updated_at", "2022-05-24 16:20:47.425069"]]
+  ↳ db/seeds.rb:59
+  [1m[36mPlaylistTrack Create (0.1ms)[0m  [1m[32mINSERT INTO "playlist_tracks" ("id", "playlist_id", "song_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 89469], ["playlist_id", 50644], ["song_id", 22340], ["created_at", "2022-05-24 16:20:47.425801"], ["updated_at", "2022-05-24 16:20:47.425801"]]
+  ↳ db/seeds.rb:65
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "albums" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "albums" ("id" bigserial primary key, "name" character varying NOT NULL, "year" integer NOT NULL, "artist_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_albums_on_artist_id" ON "albums"  ("artist_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (3.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "artists" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "artists" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_artists_on_name" ON "artists"  ("name")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_tracks" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "playlist_tracks" ("id" bigserial primary key, "playlist_id" integer NOT NULL, "song_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_playlist_id" ON "playlist_tracks"  ("playlist_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_song_id" ON "playlist_tracks"  ("song_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" bigserial primary key, "name" character varying NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_playlists_on_user_id" ON "playlists"  ("user_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs" CASCADE[0m
+  ↳ db/schema.rb:51
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "name" character varying NOT NULL, "length" integer NOT NULL, "album_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:51
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_album_id" ON "songs"  ("album_id")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_name" ON "songs"  ("name")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:61
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (2.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "albums" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "albums" ("id" bigserial primary key, "name" character varying NOT NULL, "year" integer NOT NULL, "artist_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_albums_on_artist_id" ON "albums"  ("artist_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "artists" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "artists" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_artists_on_name" ON "artists"  ("name")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_tracks" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "playlist_tracks" ("id" bigserial primary key, "playlist_id" integer NOT NULL, "song_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_playlist_id" ON "playlist_tracks"  ("playlist_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_playlist_tracks_on_song_id" ON "playlist_tracks"  ("song_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" bigserial primary key, "name" character varying NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_playlists_on_user_id" ON "playlists"  ("user_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs" CASCADE[0m
+  ↳ db/schema.rb:51
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "name" character varying NOT NULL, "length" integer NOT NULL, "album_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:51
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_album_id" ON "songs"  ("album_id")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_songs_on_name" ON "songs"  ("name")[0m
+  ↳ db/schema.rb:51
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:61
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:61
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:61
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "development"], ["updated_at", "2022-05-24 16:20:49.455441"], ["key", "environment"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2022-05-24 16:20:49.457908"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mArtist Destroy (0.6ms)[0m  [1m[31mDELETE FROM "artists"[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:15
+  [1m[36mAlbum Destroy (0.7ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  ↳ db/seeds.rb:16
+  [1m[36mPlaylist Destroy (0.6ms)[0m  [1m[31mDELETE FROM "playlists"[0m
+  ↳ db/seeds.rb:17
+  [1m[36mSong Destroy (0.7ms)[0m  [1m[31mDELETE FROM "songs"[0m
+  ↳ db/seeds.rb:18
+  [1m[36mPlaylistTrack Destroy (0.7ms)[0m  [1m[31mDELETE FROM "playlist_tracks"[0m
+  ↳ db/seeds.rb:19
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("id", "username", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 40878], ["username", "ricky"], ["password", "grade10"], ["created_at", "2022-05-24 16:20:51.368846"], ["updated_at", "2022-05-24 16:20:51.368846"]]
+  ↳ db/seeds.rb:21
+  [1m[36mArtist Create (0.4ms)[0m  [1m[32mINSERT INTO "artists" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 16690], ["name", "Aphex Twin"], ["created_at", "2022-05-24 16:20:51.376345"], ["updated_at", "2022-05-24 16:20:51.376345"]]
+  ↳ db/seeds.rb:27
+  [1m[36mAlbum Create (0.6ms)[0m  [1m[32mINSERT INTO "albums" ("id", "name", "year", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 67960], ["name", "Selected Ambient Works 85-92"], ["year", 1992], ["artist_id", 16690], ["created_at", "2022-05-24 16:20:51.385149"], ["updated_at", "2022-05-24 16:20:51.385149"]]
+  ↳ db/seeds.rb:32
+  [1m[36mSong Create (0.9ms)[0m  [1m[32mINSERT INTO "songs" ("id", "name", "length", "album_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 56268], ["name", "Ptolemy"], ["length", 434], ["album_id", 67960], ["created_at", "2022-05-24 16:20:51.393520"], ["updated_at", "2022-05-24 16:20:51.393520"]]
+  ↳ db/seeds.rb:39
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("id", "name", "length", "album_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 33547], ["name", "Hedphelym"], ["length", 363], ["album_id", 67960], ["created_at", "2022-05-24 16:20:51.394999"], ["updated_at", "2022-05-24 16:20:51.394999"]]
+  ↳ db/seeds.rb:46
+  [1m[36mPlaylist Create (0.6ms)[0m  [1m[32mINSERT INTO "playlists" ("id", "name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 18546], ["name", "Good Songs"], ["user_id", 40878], ["created_at", "2022-05-24 16:20:51.402807"], ["updated_at", "2022-05-24 16:20:51.402807"]]
+  ↳ db/seeds.rb:53
+  [1m[36mPlaylistTrack Create (0.7ms)[0m  [1m[32mINSERT INTO "playlist_tracks" ("id", "playlist_id", "song_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 27400], ["playlist_id", 18546], ["song_id", 56268], ["created_at", "2022-05-24 16:20:51.410699"], ["updated_at", "2022-05-24 16:20:51.410699"]]
+  ↳ db/seeds.rb:59
+  [1m[36mPlaylistTrack Create (0.2ms)[0m  [1m[32mINSERT INTO "playlist_tracks" ("id", "playlist_id", "song_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 18540], ["playlist_id", 18546], ["song_id", 33547], ["created_at", "2022-05-24 16:20:51.411927"], ["updated_at", "2022-05-24 16:20:51.411927"]]
+  ↳ db/seeds.rb:65
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
