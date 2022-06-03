@@ -1,0 +1,76 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ header, nav{
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     background-color: black;
+ }
+
+ header h1>a{
+    font-family: 'Brush Script MT', cursive;
+    font-size: 60px;
+    color:pink;
+    background-color: black;
+    padding: 10px;
+    padding-left: 25px;
+    width: 100%
+ }
+
+ p{
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    white-space: nowrap;
+    margin: 5px;
+ }
+
+ header a, input[type="submit"]{
+    font-family: Arial, Helvetica;
+    font-size: 24px;
+    color:white;
+    background-color: grey;
+    padding: 10px;
+    border-radius: 20%;
+    white-space: nowrap;
+    margin: 15px;
+   }
+   
+   .band-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap:wrap;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
+      width: 100%;
+   }
+ 
+   .band-list li{
+      padding: 30px;
+      font-family: Arial, Helvetica;
+      font-size: 24px;
+      color:black;
+      background-color: pink;
+      border-radius: 25%;  
+      width: 20%;
+      margin: 25px;
+      list-style-type: none;
+   }
+   
+   
+

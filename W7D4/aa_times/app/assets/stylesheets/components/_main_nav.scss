@@ -1,0 +1,74 @@
+.main-nav {
+  display:flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid $light-gray;
+}
+
+// .main-nav li {
+//   font-family: $sans-serif;
+//   font-size: 14px;
+// }
+
+.left-nav > ul,
+.right-nav > ul {
+  display:flex;
+}
+
+.left-nav {
+
+  > ul {
+    > li {
+      
+      padding: 10px;
+    }
+  }
+
+  span {
+
+  }
+}
+
+#sections-sidebar-btn > button{
+  background-color: white;
+	border-color: none;
+	color: black;
+}
+
+#gear-btn i{
+  padding-top: 4px;
+  font-size: 19px;
+  text-align: center;
+}
+
+#gear-btn:hover, #search-modal-btn > button:hover{
+  background-color: $light-gray;
+} 
+
+.fas.fa-cog{
+  font-size: 14px;
+}
+
+.right-nav  {
+
+  > ul {
+
+    > li {
+      padding: 1px;
+
+    }
+
+    > li:last-of-type > button{
+      
+    }
+  }
+  
+  i {
+
+  }
+}
+
+.left-nav > ul > li:hover,
+.right-nav > ul > li:last-of-type:hover {
+
+}
