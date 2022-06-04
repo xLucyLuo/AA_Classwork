@@ -1,0 +1,22 @@
+<% if action == "new" %>
+    <% action_url = subs_url %>
+<% else %>
+    <% action_url = sub_url %>
+<% end %>
+
+<form action="<%=action_url%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <% if action == "edit" %>
+        <input type="hidden" name="_method" value="patch">
+    <% end %>
+    <br>
+    <label>Name
+        <input type="text" name="sub[title]" value="<%=sub.title%>">
+    </label>   
+
+    <label>Description
+        <input type="text" name="sub[description]" value="<%=sub.description%>">
+    </label> 
+
+    <input type="submit" value="Submit">
+</form>
