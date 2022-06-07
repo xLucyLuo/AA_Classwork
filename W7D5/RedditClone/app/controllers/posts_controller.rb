@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+    class PostsController < ApplicationController
     def edit
         @post = Post.find_by(id: params[:id])
         render :edit
@@ -22,8 +22,8 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
         @post.author_id = current_user.id
-        if post.save
-            redirect_to sub_post_url
+        if @post.save
+            redirect_to post_url(@post)
         else
             flash.now[:errors] = @post.errors.full_messages
             render :new
