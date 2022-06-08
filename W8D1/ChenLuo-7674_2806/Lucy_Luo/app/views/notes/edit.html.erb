@@ -1,0 +1,22 @@
+<h1>Edit Note Form</h1>
+
+<form action="<%=note_url(@note)%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" method="authenticity_token" value="<%=form_authenticity_token%>">
+    <label>Title
+        <input type="text" name="note[title]" value="<%=@note.title%>">
+    </label>
+    <label>Description
+        <input type="text" name="note[description]" value="<%=@note.description%>">
+    </label>
+
+
+    <label>True
+        <input type="radio" name="note[secret]" value="true" <%= @note.secret ? "checked" : ""%>>
+    </label>
+    <label>Grue
+        <input type="radio" name="note[secret]" value="false" <%= !@note.secret ? "checked" : ""%>>
+    </label>
+
+    <input type="submit" value="Save Edited Note">
+</form>
