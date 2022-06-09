@@ -1,0 +1,68 @@
+/* PHASE 0: Sidebar */
+
+.profile-picture {                
+    
+         display: block;
+         margin-top: -100px;
+         z-index: 10 ;
+         position: relative;
+         border: 1px solid pink;
+         border-radius: 25%;
+}
+
+.profile-picture img{                
+   height: 120%;
+}
+
+/*  scam version */
+/* .online{
+    position: absolute;
+    transform: rotate(20deg);
+    background-color: green
+    color :whitesmoke;
+}  */
+
+
+
+
+/* .profile-nav:last-child {
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+}
+
+/* .profile-nav:last-child , .profile-nav:nth-child(2) {
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+}
+
+.profile-nav:nth-child(2) {
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+}
+.profile-nav:nth-child(3) {
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+}
+.profile-nav:nth-child(4) {
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+} */ 
+
+.profile-nav > ul li:first-child {
+    border-top: 1px solid pink;
+
+  }
+
+.profile-nav > ul li {
+  
+    border-bottom: 1px solid pink;
+    width: 100%;
+    
+}
+
+.profile-nav > ul li:hover {
+  
+    background: rgb(205, 235, 245);
+    cursor: pointer;
+}
+
