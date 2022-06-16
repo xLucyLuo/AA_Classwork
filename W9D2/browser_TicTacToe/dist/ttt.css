@@ -1,0 +1,26 @@
+.grid:hover {
+  background-color: #d81b60;
+}
+.grid [game=over]:hover {
+    background-color: greenyellow
+}
+.grid {
+  background-color: pink;
+}
+
+[grid=clicked] {
+      background-color: lightgray
+}
+
+[winner=winner] {
+    background-color: greenyellow
+}
+
+var--winner {
+background-color: gold;
+}
+
+h1 {
+    text-align: center;
+    color: darkgray
+}
