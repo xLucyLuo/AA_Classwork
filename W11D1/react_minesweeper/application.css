@@ -1,12 +1,10 @@
-body{
+#root{
     display: flex;
     justify-content: center;
-}
-
-h1{
     text-align: center;
     color: darkblue;
 }
+
 .board{
     display:flex;
     width: 300px;
@@ -47,9 +45,9 @@ h1{
     align-items: center;
     position: absolute;
     height: auto;
-    width: 250px;
+    width: 20%;
     top: 200px;
-    left: 450px;
+    left: 40%;
     background-color: aliceblue;
     z-index: 2;
     padding: 20px;

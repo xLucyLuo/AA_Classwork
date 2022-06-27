@@ -42,6 +42,8 @@ export default class Game extends React.Component{
         return (
             <div>
                 <h1>Minesweeper</h1>
+                <p>Click to explore a tile.</p>
+                <p>Alt + click to flag a tile.</p>
                 <Board  board = {this.state.board} game = {this.updateGame}/>
             </div>
         )

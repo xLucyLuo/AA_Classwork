@@ -179,7 +179,7 @@ var Game = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Minesweeper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_board__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Minesweeper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Click to explore a tile."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Alt + click to flag a tile."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_board__WEBPACK_IMPORTED_MODULE_3__["default"], {
         board: this.state.board,
         game: this.updateGame
       }));
